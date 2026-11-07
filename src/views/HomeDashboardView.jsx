@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { Wifi, ShoppingBag, Search, ArrowRight, CheckCircle2, ChevronRight } from 'lucide-react';
+import React from 'react';
 import { useApp } from '../context/AppContext';
 import BottomNav from '../components/BottomNav';
 
@@ -9,7 +8,6 @@ export default function HomeDashboardView() {
     setCurrentScreen,
     setActiveModal,
     setSelectedDebt,
-    setSelectedActivity,
   } = useApp();
 
   const handleSettleUp = (debt) => {
@@ -22,12 +20,9 @@ export default function HomeDashboardView() {
     setActiveModal('confirm-paid');
   };
 
-  // Preview only the top 2 activities on home to prevent long scrolls
-  const previewActivities = state.recentActivities.slice(0, 2);
-
   return (
     <div className="flex-1 flex flex-col justify-between h-full bg-white select-none">
-      {/* Scrollable Content */}
+      {/* Main Content */}
       <div className="flex-1 overflow-y-auto px-6 pt-3 pb-6">
         {/* Header */}
         <div className="flex items-center justify-between mt-2 mb-5">
@@ -70,8 +65,8 @@ export default function HomeDashboardView() {
           </div>
         )}
 
-        {/* Pending Debts Section - Featured prominently without scrolling */}
-        <div className="mt-6">
+        {/* Pending Debts Section */}
+        <div className="mt-7">
           <div className="flex items-center justify-between mb-3">
             <h2 className="text-base font-bold text-slate-900">
               Pending Debts
@@ -85,7 +80,7 @@ export default function HomeDashboardView() {
 
           <div className="space-y-3">
             {state.pendingDebts.length === 0 ? (
-              <div className="text-center py-5 text-xs text-emerald-600 font-semibold bg-emerald-50 rounded-2xl border border-emerald-100">
+              <div className="text-center py-8 text-xs text-emerald-600 font-semibold bg-emerald-50 rounded-2xl border border-emerald-100">
                 🎉 All debts settled! No outstanding balances.
               </div>
             ) : (
@@ -107,24 +102,22 @@ export default function HomeDashboardView() {
                       >
                         RM {debt.amount.toFixed(2)}
                       </div>
-                      {debt.note && (
-                        <div className="text-[11px] text-slate-400 mt-0.5">
-                          {debt.note}
-                        </div>
-                      )}
+                      <div className="text-[11px] text-slate-400 mt-0.5">
+                        {debt.note || (isYouOwe ? 'Shared household expense' : 'Groceries')}
+                      </div>
                     </div>
 
                     {isYouOwe ? (
                       <button
                         onClick={() => handleSettleUp(debt)}
-                        className="px-4 py-2 rounded-xl border-[1.5px] border-rose-500 text-rose-600 font-bold text-xs hover:bg-rose-500 hover:text-white transition active:scale-95 cursor-pointer shadow-2xs"
+                        className="px-5 py-2.5 rounded-xl border-[1.5px] border-[#00a6f4] text-[#00a6f4] font-semibold text-xs hover:bg-[#00a6f4] hover:text-white transition active:scale-95 cursor-pointer shadow-2xs"
                       >
                         Settle Up
                       </button>
                     ) : (
                       <button
                         onClick={() => handleMarkAsPaid(debt)}
-                        className="px-3.5 py-2 rounded-xl border-[1.5px] border-[#00a6f4] text-[#00a6f4] font-bold text-xs hover:bg-[#00a6f4] hover:text-white transition active:scale-95 cursor-pointer shadow-2xs"
+                        className="px-4 py-2.5 rounded-xl border-[1.5px] border-[#00a6f4] text-[#00a6f4] font-semibold text-xs hover:bg-[#00a6f4] hover:text-white transition active:scale-95 cursor-pointer shadow-2xs"
                       >
                         Mark as Paid
                       </button>
@@ -132,64 +125,6 @@ export default function HomeDashboardView() {
                   </div>
                 );
               })
-            )}
-          </div>
-        </div>
-
-        {/* Latest Activity Preview Section */}
-        <div className="mt-7">
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="text-base font-bold text-slate-900">
-              Recent Activity
-            </h2>
-            <button
-              onClick={() => setCurrentScreen('activity')}
-              className="text-xs font-bold text-[#00a6f4] hover:underline flex items-center gap-1 cursor-pointer"
-            >
-              <span>View All</span>
-              <ChevronRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
-
-          <div className="space-y-3">
-            {previewActivities.length === 0 ? (
-              <div className="text-center py-5 text-xs text-slate-400 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
-                No recent activity recorded.
-              </div>
-            ) : (
-              previewActivities.map((act) => (
-                <div
-                  key={act.id}
-                  onClick={() => setSelectedActivity(act)}
-                  className="bg-white border border-slate-200/90 rounded-[20px] p-4 flex items-center justify-between shadow-2xs hover:border-slate-300 transition cursor-pointer active:scale-[0.99]"
-                >
-                  <div className="flex items-center gap-3.5">
-                    <div className="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-200/90 flex items-center justify-center shrink-0">
-                      {act.type === 'wifi' ? (
-                        <Wifi className="w-5 h-5 text-slate-700 stroke-[2]" />
-                      ) : (
-                        <ShoppingBag className="w-5 h-5 text-slate-700 stroke-[2]" />
-                      )}
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-slate-900 text-[15px]">
-                        {act.title}
-                      </h3>
-                      <p className="text-slate-400 text-xs mt-0.5">
-                        {act.splitText}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="text-right">
-                    <div className="font-bold text-slate-900 text-[15px]">
-                      RM {act.amount.toFixed(2)}
-                    </div>
-                    <div className="text-[11px] text-slate-400 mt-0.5">
-                      {act.timestamp}
-                    </div>
-                  </div>
-                </div>
-              ))
             )}
           </div>
         </div>
