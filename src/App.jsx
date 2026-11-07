@@ -6,6 +6,7 @@ import TesterToolbar from './components/TesterToolbar';
 // Views
 import LoginView from './views/LoginView';
 import HomeDashboardView from './views/HomeDashboardView';
+import ActivityView from './views/ActivityView';
 import AddExpenseView from './views/AddExpenseView';
 import SplitDetailsView from './views/SplitDetailsView';
 import ProfileView from './views/ProfileView';
@@ -35,6 +36,8 @@ function MainApp() {
         return <LoginView />;
       case 'home':
         return <HomeDashboardView />;
+      case 'activity':
+        return <ActivityView />;
       case 'add-expense':
         return <AddExpenseView />;
       case 'split-details':
