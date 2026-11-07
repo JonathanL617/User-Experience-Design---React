@@ -1,17 +1,9 @@
 import React from 'react';
 import { Wifi } from 'lucide-react';
 
-export default function PhoneFrame({ children, isFrameEnabled = true }) {
-  if (!isFrameEnabled) {
-    return (
-      <div className="w-full min-h-screen bg-slate-50 flex flex-col justify-between max-w-md mx-auto shadow-sm">
-        {children}
-      </div>
-    );
-  }
-
+export default function PhoneFrame({ children }) {
   return (
-    <div className="relative mx-auto my-4 w-[390px] h-[844px] bg-white rounded-[50px] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.3)] ring-[12px] ring-slate-900 flex flex-col overflow-hidden select-none border-[3px] border-slate-700/30">
+    <div className="relative mx-auto w-full sm:w-[390px] h-screen sm:h-[844px] sm:my-4 bg-white sm:rounded-[50px] sm:shadow-[0_25px_60px_-15px_rgba(0,0,0,0.3)] sm:ring-[12px] sm:ring-slate-900 flex flex-col overflow-hidden select-none sm:border-[3px] sm:border-slate-700/30">
       {/* iOS Status Bar */}
       <div className="h-11 px-8 pt-2.5 flex items-center justify-between text-slate-900 text-[13px] font-semibold shrink-0 z-30 select-none bg-white">
         <span>9:41</span>

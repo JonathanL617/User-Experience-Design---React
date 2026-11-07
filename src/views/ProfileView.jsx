@@ -1,10 +1,11 @@
-import React from 'react';
-import { Wallet, Building2, ChevronRight, Bell, LogOut } from 'lucide-react';
+import React, { useState } from 'react';
+import { Wallet, Building2, ChevronRight, Bell, LogOut, RotateCcw } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 import BottomNav from '../components/BottomNav';
 
 export default function ProfileView() {
-  const { state, setState, updatePreferences, setCurrentScreen } = useApp();
+  const { state, setState, updatePreferences, setCurrentScreen, resetToInitial } = useApp();
+  const [resetToast, setResetToast] = useState(false);
 
   const toggleReminders = (e) => {
     e.stopPropagation();
@@ -20,9 +21,23 @@ export default function ProfileView() {
     setCurrentScreen('login');
   };
 
+  const handleResetData = () => {
+    resetToInitial();
+    setResetToast(true);
+    setTimeout(() => setResetToast(false), 2000);
+  };
+
   return (
-    <div className="flex-1 flex flex-col justify-between h-full bg-white">
+    <div className="flex-1 flex flex-col justify-between h-full bg-white select-none">
       <div className="flex-1 overflow-y-auto px-6 pt-5 pb-6">
+        {/* Reset Feedback Toast */}
+        {resetToast && (
+          <div className="mb-4 text-center text-xs font-bold text-emerald-600 bg-emerald-50 py-2.5 rounded-xl border border-emerald-100 animate-fadeIn flex items-center justify-center gap-1.5">
+            <RotateCcw className="w-3.5 h-3.5 text-emerald-500 animate-spin" />
+            <span>App data reset to default!</span>
+          </div>
+        )}
+
         {/* User Profile Card */}
         <div className="flex items-center gap-4 mb-8 mt-2">
           <div className="w-16 h-16 rounded-full bg-[#dbeafe] text-[#0284c7] font-bold text-2xl flex items-center justify-center shrink-0">
@@ -146,13 +161,20 @@ export default function ProfileView() {
           </div>
         </div>
 
-        {/* Log Out Option */}
-        <div className="mt-8">
+        {/* Account Management Actions */}
+        <div className="mt-8 space-y-2.5">
+          <button
+            onClick={handleResetData}
+            className="w-full py-3 rounded-2xl border border-slate-200 text-slate-500 font-bold text-xs hover:bg-slate-50 flex items-center justify-center gap-2 transition cursor-pointer"
+          >
+            <RotateCcw className="w-3.5 h-3.5" />
+            <span>Reset Demo Data</span>
+          </button>
           <button
             onClick={handleLogout}
-            className="w-full py-3.5 rounded-2xl border border-rose-200 text-rose-600 font-bold text-sm hover:bg-rose-50 flex items-center justify-center gap-2 transition cursor-pointer"
+            className="w-full py-3 rounded-2xl border border-rose-200 text-rose-600 font-bold text-xs hover:bg-rose-50 flex items-center justify-center gap-2 transition cursor-pointer"
           >
-            <LogOut className="w-4 h-4" />
+            <LogOut className="w-3.5 h-3.5" />
             <span>Log Out</span>
           </button>
         </div>

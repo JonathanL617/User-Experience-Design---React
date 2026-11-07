@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { AppProvider, useApp } from './context/AppContext';
 import PhoneFrame from './components/PhoneFrame';
-import TesterToolbar from './components/TesterToolbar';
 
 // Views
 import LoginView from './views/LoginView';
@@ -20,11 +19,9 @@ import TnGGatewayModal from './views/TnGGatewayModal';
 import BankTransferModal from './views/BankTransferModal';
 import ConfirmPaymentModal from './views/ConfirmPaymentModal';
 import ActivityDetailModal from './views/ActivityDetailModal';
-import FigmaReferenceModal from './views/FigmaReferenceModal';
 
 function MainApp() {
   const { currentScreen, state } = useApp();
-  const [isFrameEnabled, setIsFrameEnabled] = useState(true);
 
   const renderScreen = () => {
     if (!state.isLoggedIn) {
@@ -56,19 +53,11 @@ function MainApp() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 flex flex-col justify-start py-4 px-2 sm:px-4">
-      {/* Usability Testing Facilitator Bar */}
-      <TesterToolbar
-        isFrameEnabled={isFrameEnabled}
-        setIsFrameEnabled={setIsFrameEnabled}
-      />
-
-      {/* Main Interactive Smartphone Prototype */}
-      <div className="flex-1 flex items-center justify-center">
-        <PhoneFrame isFrameEnabled={isFrameEnabled}>
-          {renderScreen()}
-        </PhoneFrame>
-      </div>
+    <div className="min-h-screen bg-slate-100 flex items-center justify-center p-0 sm:p-4">
+      {/* Interactive Mobile Device Frame */}
+      <PhoneFrame>
+        {renderScreen()}
+      </PhoneFrame>
 
       {/* Global Interactive Modals & Sheets */}
       <SettleUpModal />
@@ -76,7 +65,6 @@ function MainApp() {
       <BankTransferModal />
       <ConfirmPaymentModal />
       <ActivityDetailModal />
-      <FigmaReferenceModal />
     </div>
   );
 }
