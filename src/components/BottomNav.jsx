@@ -55,7 +55,7 @@ export default function BottomNav() {
         <span className={`text-[10px] font-bold ${
           isAddActive ? 'text-[#00a6f4]' : 'text-slate-500 group-hover:text-[#00a6f4]'
         }`}>
-          Add
+          Add Expense
         </span>
       </button>
 
