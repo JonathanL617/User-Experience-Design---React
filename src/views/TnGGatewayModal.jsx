@@ -67,11 +67,6 @@ export default function TnGGatewayModal() {
           </div>
         </div>
 
-        {/* Note on feedback implementation */}
-        <div className="p-3 bg-slate-50 rounded-xl text-[11px] text-slate-500 border border-slate-100 mb-5 leading-relaxed">
-          🔒 <span className="font-semibold">Security Confirmation:</span> Directly addressing Matthew's Lo-Fi feedback to prevent instantaneous non-consensual debits.
-        </div>
-
         {/* Action Button */}
         <button
           onClick={handleAuthorize}

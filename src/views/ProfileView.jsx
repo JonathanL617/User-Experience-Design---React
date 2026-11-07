@@ -153,7 +153,7 @@ export default function ProfileView() {
             className="w-full py-3.5 rounded-2xl border border-rose-200 text-rose-600 font-bold text-sm hover:bg-rose-50 flex items-center justify-center gap-2 transition cursor-pointer"
           >
             <LogOut className="w-4 h-4" />
-            <span>Log Out (Test Login Screen)</span>
+            <span>Log Out</span>
           </button>
         </div>
       </div>

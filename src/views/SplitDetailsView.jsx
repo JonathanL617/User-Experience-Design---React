@@ -212,10 +212,10 @@ export default function SplitDetailsView() {
           </div>
         </div>
 
-        {/* Breakdown Summary Confirmation Card (Kai Wei's Lo-Fi feedback) */}
+        {/* Breakdown Summary */}
         <div className="mt-4 p-3.5 bg-sky-50/70 rounded-2xl border border-sky-100 text-xs text-slate-700 space-y-1.5 shadow-2xs">
           <div className="font-bold text-slate-800 flex items-center justify-between">
-            <span>Split Summary Confirmation:</span>
+            <span>Summary:</span>
             <span className="text-[11px] font-semibold text-[#00a6f4]">
               {draftExpense.category || 'Expense'}
             </span>

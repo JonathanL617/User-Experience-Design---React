@@ -93,7 +93,7 @@ export default function LoginView() {
             onClick={handleDemoFill}
             className="text-xs text-[#00a6f4] font-semibold hover:underline"
           >
-            Quick 1-Click Login as Emily (Test Mode)
+            Sign in as Emily (Demo)
           </button>
         </div>
       </form>
