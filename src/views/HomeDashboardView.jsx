@@ -110,7 +110,7 @@ export default function HomeDashboardView() {
                     {isYouOwe ? (
                       <button
                         onClick={() => handleSettleUp(debt)}
-                        className="px-5 py-2.5 rounded-xl border-[1.5px] border-[#00a6f4] text-[#00a6f4] font-semibold text-xs hover:bg-[#00a6f4] hover:text-white transition active:scale-95 cursor-pointer shadow-2xs"
+                        className="px-5 py-2.5 rounded-xl border-[1.5px] border-[#ef4444] text-[#ef4444] font-semibold text-xs hover:bg-[#ef4444] hover:text-white transition active:scale-95 cursor-pointer shadow-2xs"
                       >
                         Settle Up
                       </button>

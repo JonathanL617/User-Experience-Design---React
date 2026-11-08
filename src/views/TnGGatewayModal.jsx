@@ -19,7 +19,7 @@ export default function TnGGatewayModal() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-xs animate-fadeIn select-none">
-      <div className="bg-white w-full max-w-sm rounded-[32px] p-6 shadow-2xl border border-slate-100 relative">
+      <div className="bg-white w-full max-w-sm rounded-4xl p-6 shadow-2xl border border-slate-100 relative">
         <button
           onClick={() => setActiveModal('settle-up')}
           className="absolute right-5 top-5 p-1 rounded-full text-slate-400 hover:text-slate-700 transition cursor-pointer"
