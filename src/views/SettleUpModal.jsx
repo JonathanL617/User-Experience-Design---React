@@ -38,38 +38,40 @@ export default function SettleUpModal() {
 
         {/* Payment Methods */}
         <div className="space-y-3 mb-6">
-          {/* TnG eWallet Option */}
+          {/* TnG eWallet Option with Official Logo Badge */}
           <button
             onClick={() => setActiveModal('tng-gateway')}
             className="w-full text-left p-4 rounded-2xl bg-slate-50/70 border border-slate-200/90 hover:border-[#00a6f4] hover:bg-sky-50/50 transition flex items-center gap-3.5 group cursor-pointer"
           >
-            <div className="w-11 h-11 rounded-xl bg-sky-100/80 text-[#00a6f4] flex items-center justify-center shrink-0 group-hover:scale-105 transition">
-              <Wallet className="w-5 h-5 stroke-[2]" />
+            <div className="w-11 h-11 rounded-xl bg-[#00509d] text-white flex flex-col items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition font-black">
+              <span className="text-[10px] leading-none font-extrabold tracking-tighter">TNG</span>
+              <span className="text-[7px] leading-tight text-[#ffde00] font-bold">eWallet</span>
             </div>
             <div>
-              <div className="font-bold text-slate-900 text-sm">
-                Pay via TnG eWallet
+              <div className="font-bold text-slate-900 text-sm flex items-center gap-1.5">
+                Pay via Touch 'n Go eWallet
               </div>
               <div className="text-slate-400 text-xs mt-0.5">
-                Instant digital redirect
+                Official digital wallet redirect
               </div>
             </div>
           </button>
 
-          {/* Bank Transfer Option */}
+          {/* Bank Transfer Option with DuitNow Badge */}
           <button
             onClick={() => setActiveModal('bank-transfer')}
             className="w-full text-left p-4 rounded-2xl bg-slate-50/70 border border-slate-200/90 hover:border-[#00a6f4] hover:bg-sky-50/50 transition flex items-center gap-3.5 group cursor-pointer"
           >
-            <div className="w-11 h-11 rounded-xl bg-slate-100 text-slate-600 flex items-center justify-center shrink-0 group-hover:scale-105 transition">
-              <Building2 className="w-5 h-5 stroke-[2]" />
+            <div className="w-11 h-11 rounded-xl bg-[#ee1c25] text-white flex flex-col items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition font-black">
+              <span className="text-[9px] leading-none font-extrabold tracking-tighter">Duit</span>
+              <span className="text-[8px] leading-tight text-white font-bold">Now</span>
             </div>
             <div>
               <div className="font-bold text-slate-900 text-sm">
                 Pay via Bank Transfer
               </div>
               <div className="text-slate-400 text-xs mt-0.5">
-                DuitNow or instant transfer
+                DuitNow QR & Instant Bank Transfer
               </div>
             </div>
           </button>

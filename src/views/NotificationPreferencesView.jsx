@@ -209,6 +209,15 @@ export default function NotificationPreferencesView() {
               </span>
             </div>
           </div>
+
+          {/* Smart Targeting Notice (Addressing Matthew's Feedback) */}
+          <div className="mt-3 p-3 bg-emerald-50/70 border border-emerald-200/80 rounded-2xl flex items-start gap-2.5 text-xs text-emerald-800">
+            <span className="text-sm shrink-0">🎯</span>
+            <div className="leading-tight">
+              <span className="font-bold">Smart Targeting: </span>
+              <span>Reminders are sent only to roommates who have unpaid balances for this bill.</span>
+            </div>
+          </div>
         </div>
       </div>
 

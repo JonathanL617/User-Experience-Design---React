@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
 import BottomNav from '../components/BottomNav';
 
@@ -9,6 +9,8 @@ export default function HomeDashboardView() {
     setActiveModal,
     setSelectedDebt,
   } = useApp();
+
+  const [showQuickGuide, setShowQuickGuide] = useState(true);
 
   const handleSettleUp = (debt) => {
     setSelectedDebt(debt);
@@ -44,24 +46,44 @@ export default function HomeDashboardView() {
         </div>
 
         {/* Card 1: Total Balance */}
-        <div className="bg-[#e7f5fd] rounded-[24px] p-5 shadow-xs border border-sky-100">
-          <span className="text-[11px] font-bold text-[#00a6f4] tracking-wider uppercase">
+        <div className="bg-[#e7f5fd] rounded-[18px] px-4 py-3 shadow-2xs border border-sky-100">
+          <span className="text-[10px] font-bold text-[#00a6f4] tracking-wider uppercase">
             TOTAL BALANCE
           </span>
-          <div className="text-[28px] font-extrabold text-[#0f172a] mt-1.5 tracking-tight">
+          <div className="text-[18px] font-bold text-[#0f172a] mt-0.5 tracking-tight">
             You are owed RM {state.totalOwedToYou.toFixed(2)}
           </div>
         </div>
 
         {/* Card 2: Total Debt (shown if user owes money) */}
         {state.totalYouOwe > 0 && (
-          <div className="bg-[#ffe8ed] rounded-[24px] p-5 mt-3 shadow-xs border border-rose-100 transition-all">
-            <span className="text-[11px] font-bold text-[#f43f5e] tracking-wider uppercase">
+          <div className="bg-[#ffe8ed] rounded-[18px] px-4 py-3 mt-2 shadow-2xs border border-rose-100 transition-all">
+            <span className="text-[10px] font-bold text-[#f43f5e] tracking-wider uppercase">
               TOTAL DEBT
             </span>
-            <div className="text-[28px] font-extrabold text-[#0f172a] mt-1.5 tracking-tight">
+            <div className="text-[18px] font-bold text-[#0f172a] mt-0.5 tracking-tight">
               You owe RM {state.totalYouOwe.toFixed(2)}
             </div>
+          </div>
+        )}
+
+        {/* First-Time User Quick Guide Banner (Addressing Matthew's Feedback) */}
+        {showQuickGuide && (
+          <div className="mt-3.5 p-3.5 bg-sky-50 border border-sky-200/80 rounded-2xl flex items-center justify-between text-xs text-slate-700 animate-fadeIn">
+            <div className="flex items-center gap-2.5">
+              <span className="text-base shrink-0">💡</span>
+              <div>
+                <span className="font-bold text-[#0284c7]">Quick Guide: </span>
+                <span>Tap the center <strong className="text-slate-900">+</strong> button below anytime to add a new shared bill.</span>
+              </div>
+            </div>
+            <button
+              onClick={() => setShowQuickGuide(false)}
+              className="text-slate-400 hover:text-slate-600 p-1 text-xs cursor-pointer ml-1"
+              title="Dismiss guide"
+            >
+              ✕
+            </button>
           </div>
         )}
 
